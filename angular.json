@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "short-url-client": {
+    "short-link-client": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/short-url-client",
+            "outputPath": "dist/short-link-client",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "short-url-client:build:production"
+              "buildTarget": "short-link-client:build:production"
             },
             "development": {
-              "buildTarget": "short-url-client:build:development"
+              "buildTarget": "short-link-client:build:development"
             }
           },
           "defaultConfiguration": "development"
