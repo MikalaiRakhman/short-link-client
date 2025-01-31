@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { VisibilityService } from '../../services/visability/visibility.service';
+import { LinkService } from '../../services/link/link.service';
 
 @Component({
   selector: 'app-card-home-first',
@@ -18,7 +19,9 @@ export class CardHomeFirstComponent {
   formLongLink: FormGroup;
   fb = inject(FormBuilder);
   visibility = inject(VisibilityService);
+  linkService = inject(LinkService);
   longLink: string;
+  
 
   constructor() {
     this.longLink = '';
@@ -32,9 +35,20 @@ export class CardHomeFirstComponent {
     if(this.formLongLink.valid) {
       this.longLink = this.formLongLink.get('longLink')?.value;
       console.log(this.longLink);
+      this.linkService.changeLongLink(this.longLink);
+      this.createShortUrl();      
       this.visibility.setCardHomeFirstValue(false);
       this.visibility.setCardHomeSecondValue(true);
     }
+  }
+
+  createShortUrl() {
+    this.linkService.createShortUrl(this.longLink).subscribe(response => {
+      this.linkService.changeShortLink(response.shortUrl)
+      console.log(response.shortUrl);
+    }, error => {
+      console.error('Error creating short URL:', error);
+    });
   }
 
 }
