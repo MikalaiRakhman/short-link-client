@@ -6,6 +6,7 @@ import { MatInputModule} from '@angular/material/input'
 import { FormsModule } from '@angular/forms';
 import { LinkService } from '../../services/link/link.service';
 import { VisibilityService } from '../../services/visability/visibility.service';
+import { ApiConfigService } from '../../services/api-config/api-config.service';
 
 @Component({
   selector: 'app-card-home-second',
@@ -16,6 +17,7 @@ import { VisibilityService } from '../../services/visability/visibility.service'
 export class CardHomeSecondComponent implements OnInit {  
   linkService = inject(LinkService);
   visibility = inject(VisibilityService);
+  apiService = inject(ApiConfigService);
 
   shortLink: string = '';
   longLink: string = '';
@@ -27,7 +29,7 @@ export class CardHomeSecondComponent implements OnInit {
     })
 
     this.linkService.currentShortLink.subscribe(shortLink => {
-      this.shortLink = shortLink;
+      this.shortLink = `${this.apiService.apiUrl}/${shortLink}`;
       console.log('card-home-second shortLink:', this.shortLink);
     });
   }
