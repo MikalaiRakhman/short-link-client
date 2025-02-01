@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { VisibilityService } from '../../services/visability/visibility.service';
 import { LinkService } from '../../services/link/link.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { TokenService } from '../../services/token/token.service';
 
 @Component({
   selector: 'app-card-home-first',
@@ -20,6 +22,8 @@ export class CardHomeFirstComponent {
   fb = inject(FormBuilder);
   visibility = inject(VisibilityService);
   linkService = inject(LinkService);
+  authService = inject(AuthService);
+  tokenService = inject(TokenService);
   longLink: string;
   
 
@@ -43,12 +47,26 @@ export class CardHomeFirstComponent {
   }
 
   createShortUrl() {
-    this.linkService.createShortUrl(this.longLink).subscribe(response => {
-      this.linkService.changeShortLink(response.shortUrl)
-      console.log(response.shortUrl);
-    }, error => {
-      console.error('Error creating short URL:', error);
-    });
+    if(this.isLoggedIn()) {
+      this.linkService.createShortUrlWithUserId(this.longLink, this.tokenService.getIdFromToken(this.tokenService.getToken()!))
+      .subscribe(response => {
+        this.linkService.changeShortLink(response.shortUrl);
+        console.log(response.shortUrl);
+      }, error => {
+        console.error('Error creating short URL with user id:', error);
+      });      
+    } else {
+      this.linkService.createShortUrl(this.longLink).subscribe(response => {
+        this.linkService.changeShortLink(response.shortUrl);
+        console.log(response.shortUrl);
+      }, error => {
+        console.error('Error creating short URL:', error);
+      });
+    }    
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isAuthenticated();
   }
 
 }

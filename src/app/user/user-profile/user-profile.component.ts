@@ -8,7 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { User } from '../../models/user.type';
 import { TokenService } from '../../services/token/token.service';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../services/user/user.service';
 import { DoubleUrl } from '../../models/double-url.type';
 import { LinkService } from '../../services/link/link.service';
 

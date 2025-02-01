@@ -23,6 +23,14 @@ export class LinkService {
     return this.http.post<{ shortUrl: string }>(`${this.api.apiShortUrls}/create-short-url`, payload);
   }
 
+  createShortUrlWithUserId(originalUrl: string, userId: string): Observable<{shortUrl: string}> {
+    const payload = { 
+      originalUrl: originalUrl,
+      userId: userId
+    }
+    return this.http.post<{ shortUrl: string }>(`${this.api.apiShortUrls}/create-short-url-with-user-id`, payload);
+  } 
+
   changeShortLink(shortLink: string) {
     this.shortLinkSource.next(shortLink);
     console.log('link service', this.shortLinkSource);

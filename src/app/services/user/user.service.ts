@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { ApiConfigService } from './api-config/api-config.service';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models/user.type';
 import { Observable } from 'rxjs';
+import { ApiConfigService } from '../api-config/api-config.service';
+import { User } from '../../models/user.type';
 
 @Injectable({
   providedIn: 'root'
