@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { ApiConfigService } from '../api-config/api-config.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { DoubleUrl } from '../../models/double-url.type';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,9 @@ export class LinkService {
 
   changeLongLink(longLink: string) {
     this.longLinkSource.next(longLink);
+  }
+
+  getAllDoubleUrls(): Observable<DoubleUrl[]> {
+    return this.http.get<DoubleUrl[]>(`${this.api.apiShortUrls}/get-all-double-urls`);
   }
 }

@@ -1,0 +1,31 @@
+<mat-card class="user-profile-card">
+    <mat-card-header>
+      <mat-card-title>
+        <div class="profile-header">
+          <div class="profile-avatar">
+            <img src="assets\png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png" alt="User icon" />
+          </div>
+          <h4> Profile </h4>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="profile-items">
+      <div class="profile-item"><span class="label">Email:</span><span class="value">{{ user!.email }}</span></div>      
+    </mat-card-content>    
+  </mat-card>
+
+  <div class="table-container" *ngIf="showTable">
+    <h3 class="table-title">My links</h3>
+    <table mat-table [dataSource]="doubleUrlsOfCurrentUser" class="mat-elevation-z8 custom-table">
+      <ng-container matColumnDef="originalLink">
+        <th mat-header-cell *matHeaderCellDef>Original link</th>
+        <td mat-cell *matCellDef="let doubleUrl">{{doubleUrl.originalUrl }}</td>
+      </ng-container>
+      <ng-container matColumnDef="shortLink">
+        <th mat-header-cell *matHeaderCellDef>Short link</th>
+        <td mat-cell *matCellDef="let doubleUrl">{{ doubleUrl.shortUrl }}</td>
+      </ng-container>      
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>

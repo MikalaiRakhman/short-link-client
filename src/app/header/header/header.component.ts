@@ -21,6 +21,10 @@ export class HeaderComponent {
     this.router.navigate(['']);
  }
 
+ onUserProfile(): void {
+    this.router.navigate(['user'])
+ }
+
   isLoggedIn(): boolean {
     return this.authService.isAuthenticated();
   }
