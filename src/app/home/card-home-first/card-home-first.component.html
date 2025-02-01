@@ -1,15 +1,17 @@
-<mat-card appearance="outlined">
-    <mat-card-header>
-      <mat-card-title> Input long link here</mat-card-title>      
+<mat-card class="custom-card" appearance="outlined">
+  <mat-card-header>
+      <mat-card-title class="header-title">Input long link here</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
       <form class="example-form" [formGroup]="formLongLink" (ngSubmit)="onSaveLongLink()">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Long link</mat-label>
-          <input matInput formControlName="longLink" required>
-          <mat-error *ngIf="formLongLink.get('longLink')?.hasError('required')">Long link is required.</mat-error>
-        </mat-form-field>
-        <mat-card-actions>
-          <button mat-stroked-button color="primary" type="submit" [disabled]="formLongLink.invalid">Get short link</button>
-        </mat-card-actions>
+          <mat-form-field class="example-full-width custom-form-field" appearance="fill">
+              <mat-label>Long link</mat-label>
+              <input matInput formControlName="longLink" required>
+              <mat-error *ngIf="formLongLink.get('longLink')?.hasError('required')">Long link is required.</mat-error>
+          </mat-form-field>
+          <mat-card-actions>
+              <button mat-flat-button color="primary" type="submit" [disabled]="formLongLink.invalid">Get short link</button>
+          </mat-card-actions>
       </form>
-    </mat-card-header>    
+  </mat-card-content>
 </mat-card>

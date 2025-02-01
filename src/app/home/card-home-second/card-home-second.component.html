@@ -1,24 +1,27 @@
-<mat-card appearance="outlined">
-    <mat-card-header>
-      <mat-card-title> Your long link here</mat-card-title>      
+<mat-card class="custom-card" appearance="outlined">
+  <mat-card-header>
+      <mat-card-title class="header-title">Your long link here</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
       <form class="example-form">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Long link</mat-label>
-          <input matInput type="text-first" [value]="longLink" readonly>
-        </mat-form-field>
-      </form>
-    </mat-card-header>
-    <mat-card-header>
-        <mat-card-title> Your short link here</mat-card-title>      
-        <form class="example-form">
-          <mat-form-field class="example-full-width">
-            <mat-label>Short link</mat-label>
-            <input matInput type="text-second" [value]="shortLink" readonly>
+          <mat-form-field class="example-full-width custom-form-field" appearance="fill">
+              <mat-label>Long link</mat-label>
+              <input matInput type="text-first" [value]="longLink" readonly>
           </mat-form-field>
-        </form>
-      </mat-card-header>
-    <mat-card-actions>
-      <button mat-stroked-button (click)="onGetAnotherLink()">Get another link</button>
-    </mat-card-actions>
+      </form>
+  </mat-card-content>
+  <mat-card-header>
+      <mat-card-title class="header-title">Your short link here</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+      <form class="example-form">
+          <mat-form-field class="example-full-width custom-form-field">
+              <mat-label>Short link</mat-label>
+              <input matInput type="text-second" [value]="shortLink" readonly>
+          </mat-form-field>
+      </form>
+  </mat-card-content>
+  <mat-card-actions>
+      <button mat-flat-button (click)="onGetAnotherLink()">Get another link</button>
+  </mat-card-actions>
 </mat-card>
-  
