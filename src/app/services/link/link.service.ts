@@ -43,4 +43,8 @@ export class LinkService {
   getAllDoubleUrls(): Observable<DoubleUrl[]> {
     return this.http.get<DoubleUrl[]>(`${this.api.apiShortUrls}/get-all-double-urls`);
   }
+
+  deleteDoubleUrl(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.api.apiShortUrls}/delete-double-url/${id}`);
+  }
 }

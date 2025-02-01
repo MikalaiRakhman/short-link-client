@@ -21,13 +21,13 @@ import { LinkService } from '../../services/link/link.service';
 export class UserProfileComponent implements OnInit{  
   token = inject(TokenService);
   userService = inject(UserService);
-  linkService = inject(LinkService);
+  linkService = inject(LinkService);  
 
   doubleUrls: DoubleUrl[] = [];
   doubleUrlsOfCurrentUser: DoubleUrl[] = [];
   user: User = {} as User;
   showTable = false;
-  displayedColumns: string[] = ['originalLink', 'shortLink'];
+  displayedColumns: string[] = ['originalLink', 'shortLink', 'actions'];
 
   ngOnInit(): void {
     this.loadData();
@@ -77,6 +77,16 @@ export class UserProfileComponent implements OnInit{
     if (this.doubleUrlsOfCurrentUser.length > 0) {
       this.showTable = true;
     }
+  }
+
+  deleteDoubleUrl(id: string) {
+    this.linkService.deleteDoubleUrl(id).subscribe(() => {
+      console.log(`URL with id ${id} deleted`);
+      this.loadData();
+      window.location.reload();
+    }, error => {
+      console.error('Error deleting double URL:', error);
+    });
   }
 }
 
