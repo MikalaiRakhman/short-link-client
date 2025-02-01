@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --color-salat: #B7D175;
+    --color-green: #206037;
+    --color-mint: #2D8661;
+    --color-siren: #8A349D;
+  } 
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: var(--color-green);
+  }
+  
+  a {
+    color: var(--color-mint);
+  }
+  
+  header {
+    background-color: var(--color-siren);
+  }
+  
